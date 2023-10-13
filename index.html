@@ -58,10 +58,16 @@
             --color_enter_bg: #f2f1fb;
             --color_enter_bg_rgb: 242,241,251;
         }
+        * {
+            box-sizing: border-box;
+        }
 
-        html, body{
+        html, body, form{
+            font-size: 10.5px;
+            line-height: 10.5px;
             margin: 0;
             padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, "Apple SD Gothic Neo", sans-serif;
         }
         #wrap{
             text-align: center;
@@ -69,7 +75,7 @@
         #wrap-center{
             width: 1280px;
             display: inline-block;
-            background-color: yellow;
+            background-color: white;
         }
         #header{
             text-align: left;
@@ -153,6 +159,115 @@
             overflow: hidden;
         }
 
+        /* 상단바, 검색창 스타일 */
+        #search > form{
+                    display: inline-flex;
+                    width: 708px;
+                    height: 60px;
+                    border: 1px solid #03c75a;
+                    border-radius: 33px; 
+                    text-align: left;   
+                }
+                #search > form:hover{
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
+                }
+               
+                #search-svg{
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 68px;
+                    margin-right: 12px;
+                    height: 100%;
+                    padding-left: 10px;
+                    position: relative;
+                }
+                #search-svg::after{
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after {
+                    content: '';
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    position: absolute;
+                    display: inline-block;
+                    right: 0;
+                    top: 20px;
+                }
+                #search-svg svg{
+                    width: 24px;
+                    height: 24px;
+                    fill: #03c75a;
+                }
+                #search-input{
+                    width: 480px;
+                    padding: 17px 0;
+                    font-size: 2rem;
+                    line-height: 24px;
+                    font-weight: bold;
+                    border: none;
+                    outline: none;
+                } 
+                #search-input::placeholder{
+                    color: white;
+                }
+                #search-input:focus::placeholder{
+                    color: #e4e4e4;
+                }
+                #search-right{
+                    flex: 1;
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: flex-end;
+                }
+                #search-keyboard, #search-recent, #search-button{
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                } 
+                #search-keyboard::before{
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.6519c842.png);
+                    background-size: 435px 414px;
+                    background-position: -91px -308px;
+                    background-repeat: no-repeat;
+                    width: 24px;
+                    height: 16px;
+                }
+                #search-keyboard:hover::before{
+                    filter: brightness(0.7);
+                }
+                #search-recent::before{
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.6519c842.png);
+                    background-size: 435px 414px;
+                    background-position: -318px -247px;
+                    background-repeat: no-repeat;
+                    width: 10px;
+                    height: 6px;
+                }
+                #search-button{
+                    padding: 17px 27px 16px 10px;
+                }
+                #search-button > div{
+                    /* background: #03c75a; */
+                    width: 25px;
+                    height: 25px;
+                }
+                #search-button > div::before{
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.6519c842.png);
+                    background-size: 435px 414px;
+                    background-position: -295px -329px;
+                    background-repeat: no-repeat;
+                    width: 25px;
+                    height: 25px;
+                }
+                /* nav바 스타일 */
     </style>
 </head>
 <body>
@@ -184,20 +299,161 @@
                     <!-- ::after -->
                 </button>
             </div>
-            <style>
-                #search > form{
-                    width: 708px;
-                    height: 60px;
-                }
-            </style>
+           
             <div id="search">
                 <form action="">
+                    <a id="search-svg" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
+                    </a>
                     <label for="search-input" class="blind">검색어 입력</label>
-                    <input id="search-input" type="text" />
-                    <button class="blind">검색</button>
+                    <input id="search-input" type="text" placeholder="검색어를 입력하세요.">
+                    <div id="search-right">
+                        <button href="#" id="search-keyboard">
+                            <span class="blind">입력도구</span>
+                        </button>
+                        <button href="#" id="search-recent">
+                            <span class="blind">자동완성/최근검색어펼치기</span>
+                        </button>
+                        <button id="search-button">
+                            <div><span class="blind">검색</span></div>
+                        </button>
+                    </div>
                 </form>
             </div>
-            <div id="nav"></div>
+            <style>
+                /* li 요소 중에 1번째 유형을 적용  */
+                #nav > ul{
+                    display: flex;
+                    list-style-type: none;
+                    justify-content: center;
+                    font-size: 1.4rem;
+                    line-height: 20px;
+                } 
+                #nav a{
+                    text-decoration: none;
+                    text-align: center;
+                }
+                #nav a div{
+                    width: 44px;
+                    height: 44px;
+                    margin: 0 auto;
+                }
+                #nav a div::after{
+                    content: "";
+                    display: inline-block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.6519c842.png);
+                    background-size: 435px 414px;
+                    background-repeat: no-repeat;
+                    width: 44px;
+                    height: 44px;
+                }
+                #nav a:visited{
+                    color: black;
+                }
+                #nav li{
+                    width: 64px;
+                    margin-left: 4px;
+                }
+                #nav li:nth-of-type(1){
+                    margin-left: 0;
+                    
+                }
+                #nav li:nth-of-type(1) a div::after{
+                    background-position: -250px -90px;
+                }
+                #nav li:nth-of-type(2) a div::after{
+                    background-position: -250px 0;
+                }
+                #nav li:nth-of-type(3) a div::after{
+                    background-position: -201px -98px;
+                }
+                #nav li:nth-of-type(4) a div::after{
+                    background-position: -90px -209px;
+                }
+                #nav li:nth-of-type(5) a div::after{
+                    background-position: 0 -209px;
+                }
+                #nav li:nth-of-type(6) a div::after{
+                    background-position: -180px -209px;
+                }
+                #nav li:nth-of-type(7) a div::after{
+                    background-position: -45px -209px;
+                }
+                #nav li:nth-of-type(8) a div::after{
+                    background-position: -201px 0;
+                }
+                #nav li:nth-of-type(9) a div::after{
+                    background-position: -225px -209px;
+                }
+                #nav li:nth-of-type(10) a div::after{
+                    background-position: -250px -135px;
+                }
+            </style>
+            <div id="nav">
+                <ul>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>메일</span>
+                        </a>
+                    </li>
+                    <div></div>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>카페</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>블로그</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>쇼핑</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>뉴스</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>증권</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>부동산</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>지도</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>웹툰</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span class="blind">더보기</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div id="main"></div>
         </div>
     </div>   
