@@ -74,18 +74,17 @@
         #header{
             text-align: left;
             position: relative;
+            height: 64px;
         }
-        #header-hamburger{
+        #header-hamburger, #header-notice, #header-naverpay, #header-navertalk{
             position: absolute;
             top: 18px;
-            left: -10px;
-            padding: 10px;
             display: inline-block;
             background: none;
             border: none;
-            cursor: pointer;
+            cursor: pointer;   
         }
-        #header-hamburger:hover::before{
+        #header-hamburger:hover::before, #header-naverpay:hover::before, #header-navertalk:hover::before,  #header-notice:hover::before{
             position: absolute;
             content: '';
             z-index: 0;
@@ -96,111 +95,50 @@
             border-radius: 50%;
             background-color: #e7eced;
         }
-
-        #header-hamburger > div{
+        #header-hamburger > div, #header-naverpay > div, #header-navertalk > div, #header-notice > div{
             background-image: url(./sp_main.png);
-            width: 26px;
-            height: 26px;
             position: relative;
             z-index: 1;
             background-repeat: no-repeat;
             background-size: 435px 414px;
+        } 
+        #header-hamburger{
+            left: -10px;
+            padding: 10px;
+        }
+        #header-hamburger > div{
+            width: 26px;
+            height: 26px;
             background-position: -82px -329px;
         }
         #header-naverpay{
-            position: absolute;
-            top: 18px;
-            left: 42px;
+            left: 43px;
             padding: 7px;
-            display: inline-block;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        #header-naverpay:hover::before{
-            position: absolute;
-            content: '';
-            z-index: 0;
-            left: 1px;
-            top: 1px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background-color: #e7eced;
         }
 
         #header-naverpay > div{
-            background-image: url(./sp_main.png);
             width: 32px;
             height: 32px;
-            position: relative;
-            z-index: 1;
-            background-repeat: no-repeat;
-            background-size: 435px 414px;
             background-position: -295px -177px;
         }
         #header-navertalk{
-            position: absolute;
-            top: 18px;
-            right: 42px;
+            right: 40px;
             padding: 10px;
-            display: inline-block;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        #header-navertalk:hover::before{
-            position: absolute;
-            content: '';
-            z-index: 0;
-            left: 1px;
-            top: 1px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background-color: #e7eced;
         }
 
         #header-navertalk > div{
-            background-image: url(./sp_main.png);
             width: 26px;
             height: 26px;
-            position: relative;
-            z-index: 1;
-            background-repeat: no-repeat;
-            background-size: 435px 414px;
             background-position: -190px -329px;
         }
         #header-notice{
-            position: absolute;
-            top: 18px;
             right: -10px;
             padding: 10px;
-            display: inline-block;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        #header-notice:hover::before{
-            position: absolute;
-            content: '';
-            z-index: 0;
-            left: 1px;
-            top: 1px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background-color: #e7eced;
         }
 
         #header-notice > div{
-            background-image: url(./sp_main.png);
             width: 26px;
             height: 26px;
-            position: relative;
-            z-index: 1;
-            background-repeat: no-repeat;
-            background-size: 435px 414px;
             background-position: -136px -329px;
         }
         #main{
@@ -214,6 +152,7 @@
             margin: -1px;
             overflow: hidden;
         }
+
     </style>
 </head>
 <body>
@@ -245,7 +184,19 @@
                     <!-- ::after -->
                 </button>
             </div>
-            <div id="search"></div>
+            <style>
+                #search > form{
+                    width: 708px;
+                    height: 60px;
+                }
+            </style>
+            <div id="search">
+                <form action="">
+                    <label for="search-input" class="blind">검색어 입력</label>
+                    <input id="search-input" type="text" />
+                    <button class="blind">검색</button>
+                </form>
+            </div>
             <div id="nav"></div>
             <div id="main"></div>
         </div>
